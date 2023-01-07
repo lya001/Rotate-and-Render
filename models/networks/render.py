@@ -336,7 +336,8 @@ class Render(object):
         # vertices_in_ori_img[:, 20000:random_num] = vertices_in_ori_img[:, 20000:random_num] * np.random.uniform(1.01,
         #                                                                          1.02) - np.random.uniform(0.5, 1.5)
 
-        
+        vertices_in_ori_img = vertices_in_ori_img.to(device="cpu")
+
         textures = img_ori[vertices_in_ori_img[1, :].round().clamp(0, h - 1).long(), \
                    vertices_in_ori_img[0, :].round().clamp(0, w - 1).long(), :]
 

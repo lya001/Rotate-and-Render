@@ -99,7 +99,11 @@ if __name__ == '__main__':
         render_layer = TestRender(opt)
         render_layer_list.append(render_layer)
 
-    opt.gpu_ids = list(range(0, ngpus - opt.render_thread))
+    if ngpus > 1:
+        opt.gpu_ids = list(range(0, ngpus - opt.render_thread))
+    else:
+        opt.gpu_ids = [0]
+    
     print('Testing gpu ', opt.gpu_ids)
     if opt.names is None:
         model = TestModel(opt)
@@ -156,8 +160,8 @@ if __name__ == '__main__':
 
             img_path = data['path']
             poses = data['pose_list']
-            rotated_landmarks = data['rotated_landmarks'][:, :, :2].cpu().numpy().astype(np.float)
-            rotated_landmarks_106 = data['rotated_landmarks_106'][:, :, :2].cpu().numpy().astype(np.float)
+            rotated_landmarks = data['rotated_landmarks'][:, :, :2].cpu().numpy().astype(np.float32)
+            rotated_landmarks_106 = data['rotated_landmarks_106'][:, :, :2].cpu().numpy().astype(np.float32)
 
 
             generate_rotateds = []
