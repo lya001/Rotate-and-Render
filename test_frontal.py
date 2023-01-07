@@ -153,7 +153,7 @@ if __name__ == '__main__':
             print(message)
 
             img_path = data['path']
-            rotated_landmarks = data['rotated_landmarks'][:, :, :2].cpu().numpy().astype(np.float)
+            rotated_landmarks = data['rotated_landmarks'][:, :, :2].cpu().numpy().astype(np.float32)
 
 
             generate_rotateds = []

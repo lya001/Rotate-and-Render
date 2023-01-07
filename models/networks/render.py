@@ -273,7 +273,7 @@ class Render(object):
     def get_68_points(self, vertices):
         vertixes = vertices.T.flatten()
         vertice_68 = vertixes[self.keypoints].reshape(-1, 3)
-        vertice_68 = vertice_68.astype(np.int)
+        vertice_68 = vertice_68.astype(int)
         return vertice_68
 
     def torch_get_68_points(self, vertices):
@@ -563,7 +563,7 @@ class Render(object):
 
     def get_seg_map(self, vertices, no_guassian=False, size=256):
         landmarks = self.torch_get_68_points(vertices)
-        landmarks = landmarks[:, :, :2].cpu().numpy().astype(np.float)
+        landmarks = landmarks[:, :, :2].cpu().numpy().astype(np.float32)
         all_heatmap = []
         all_orig_heatmap = []
         for i in range(landmarks.shape[0]):

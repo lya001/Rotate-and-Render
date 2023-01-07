@@ -46,7 +46,7 @@ class RotateSPADEModel(torch.nn.Module):
         return t5
 
     def get_seg_map(self, landmarks, no_guassian=False, size=256, original_angles=None):
-        landmarks = landmarks[:, :, :2].cpu().numpy().astype(np.float)
+        landmarks = landmarks[:, :, :2].cpu().numpy().astype(np.float32)
         all_heatmap = []
         all_orig_heatmap = []
         if original_angles is None:

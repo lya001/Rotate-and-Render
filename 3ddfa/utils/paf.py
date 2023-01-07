@@ -16,7 +16,7 @@ def reconstruct_paf_anchor(param, whitening=True):
 
 
 def gen_offsets(kernel_size):
-    offsets = np.zeros((2, kernel_size * kernel_size), dtype=np.int)
+    offsets = np.zeros((2, kernel_size * kernel_size), dtype=int)
     ind = 0
     delta = (kernel_size - 1) // 2
     for i in range(kernel_size):
@@ -35,7 +35,7 @@ def gen_img_paf(img_crop, param, kernel_size=3):
     kernel_size: kernel_size for convolution, should be even number like 3 or 5 or ...
     """
     anchor = reconstruct_paf_anchor(param)
-    anchor = np.round(anchor).astype(np.int)
+    anchor = np.round(anchor).astype(int)
     delta = (kernel_size - 1) // 2
     anchor[anchor < delta] = delta
     anchor[anchor >= std_size - delta - 1] = std_size - delta - 1
